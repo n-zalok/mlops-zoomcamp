@@ -1,0 +1,19 @@
+services:
+  mlopszoomcamp-airflow:
+    image: mlopszoomcamp:latest
+
+    networks:
+      - default
+    
+    volumes:
+      - ./airflow:/opt/airflow
+
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+      - "9696:9696"
+    command: airflow standalone
+
+networks:
+  default:
+    driver: bridge
