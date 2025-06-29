@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  airflow:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./airflow:/opt/airflow
+      - ./reports:/opt/airflow/reports
+      - ./air_dbs:/opt/airflow/dbs
+    networks:
+      - default
+    command: airflow standalone
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+      - ./graf_dbs:/var/lib/grafana/datasources
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
