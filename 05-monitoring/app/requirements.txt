@@ -1,4 +1,0 @@
-pandas
-scikit-learn
-evidently
-mysql-connector-python
